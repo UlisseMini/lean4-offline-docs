@@ -1,0 +1,9 @@
+#!/bin/sh
+
+prefix="http://localhost:8000"
+
+echo "docs available"
+echo "book $prefix/theorem_proving_in_lean4"
+echo "manual $prefix/lean4/doc"
+
+python -m http.server

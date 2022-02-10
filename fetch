@@ -1,0 +1,23 @@
+#!/bin/sh
+set -e
+
+if [ -d web ]; then
+  echo './web exists' && exit 1
+fi
+
+fetch() {
+  repo="$1"; shift
+  if [ -d "$repo" ]; then
+    git --git-dir "$repo/.git" pull
+  else
+    git clone --depth 1 "https://github.com/leanprover/$repo" "$@"
+  fi
+}
+
+# requires jekyll to build, and jekyll sites don't work well locally
+# get leanprover.github.io
+
+fetch lean4 --branch gh-pages 
+fetch theorem_proving_in_lean4 --branch gh-pages
+
+
